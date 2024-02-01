@@ -6,7 +6,7 @@ import About from './pages/About';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 // https://www.youtube.com/watch?v=VAaUy_Moivw&list=PL3Fnrm_wFNB_v38hyEakflHgWOIz8kC37&index=79&t=1208s
-// https://github.com/ranjit20m/mern-estate
+// https://github.com/ranjit20m/thane-housing 
 const App = () => {
   return (
     <BrowserRouter>
