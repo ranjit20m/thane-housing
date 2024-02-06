@@ -1,4 +1,5 @@
 import express from 'express'; // Add "type": "module" in package.json otherwise require will need to be used
+// import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
@@ -15,6 +16,17 @@ mongoose.connect(process.env.MONGODB).then(() => {
 // Set app server
 const app = express();
 
+// Cors
+// app.use(cors);
+// app.use(cors());
+// app.use(
+//     cors({
+//         origin: ["http://localhost:3000"],
+//         methods: ["GET", "POST", "PUT", "UPDATE"],
+//         credentials: true,
+//         allowedHeaders: ["Content-Type", "Authorization"],
+//     })
+// );
 // Allow json as input of server
 app.use(express.json()); // console log will display undefined if not added this for sending POST request
 
