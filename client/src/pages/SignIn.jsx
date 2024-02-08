@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'; // Using this hook we can dispatch the function we have
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice'; // Import functions we created
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  const {loading, error} = useSelector((state) => state.user); // import error and laoding from global state - user
   const navigate = useNavigate();
+  const dispatch = useDispatch(); // Initialize
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value })
@@ -14,7 +18,7 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();     
     try {
-      setLoading(true);
+      dispatch(signInStart()) // setLoading(true);
       const response = await fetch('/api/auth/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
@@ -23,16 +27,13 @@ const SignIn = () => {
       const data = await response.json(); // convert the respose we get to json
       console.log(data);
       if(data.success === false) {
-        setLoading(false);
-        setError(data.message);        
+        dispatch(signInFailure(data.message)) // setLoading(false); setError(data.message);        
         return;
       }
-      setLoading(false);
-      setError(null);
+      dispatch(signInSuccess(data)) // setLoading(false); setError(null);
       navigate('/'); // if everything ok navigate to home page
     } catch (error) {
-      setLoading(false);
-      console.log(error.message)
+      dispatch(signInFailure(error.message)) // setLoading(false); setError(error.message)
     } 
   };
   
