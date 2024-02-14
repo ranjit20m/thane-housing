@@ -19,7 +19,7 @@ const Profile = () => {
     if(file) {
         setFileUploadError(false); // error stays once it show so to fix that
         handleFileUpload(file);
-      }
+    }
   }, [file]);
   
   const handleFileUpload = (file) => {
@@ -28,15 +28,16 @@ const Profile = () => {
     const storageRef = ref(storage, fileName) // Which place to save the storage
     const uploadTask = uploadBytesResumable(storageRef, file) // To see the percentage of upload
     // Track upload changes
-    uploadTask.on('state_changed',
-      (snapshot) => {
+    uploadTask.on('state_changed', // state_changed event has three callback functions
+      (snapshot) => { // 1. keeping track of the upload progress and uploading the progress state
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100; // Upload Progress
         setFilePerc(Math.round(progress)) // console.log(progress)
       },
-      (error) => {
+      (error) => { // 2. handle an error if the upload is unsuccessful
         setFileUploadError(true);
+        console.log(error); // FirebaseError: Firebase Storage: User does not have permission to access '1707843190816DSC_0002 - Copy.JPG'. (storage/unauthorized)
       },
-      () => { // Get download url
+      () => { // 3. once the upload is complete, and gets the download URL, then... 
         getDownloadURL(uploadTask.snapshot.ref)
         .then((downloadURL) => {
           setFormData({...formData, avatar: downloadURL});
