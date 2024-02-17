@@ -6,6 +6,7 @@ import About from './pages/About';
 import Profile from './pages/Profile';
 import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
+import CreateListing from './pages/CreateListing';
 // https://www.youtube.com/watch?v=VAaUy_Moivw&list=PL3Fnrm_wFNB_v38hyEakflHgWOIz8kC37&index=79&t=1208s
 // https://github.com/ranjit20m/thane-housing 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/about' element={<About />} />
         <Route element={< PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
+          <Route path='/create-listing' element={<CreateListing />} />
         </Route>        
       </Routes>
     </BrowserRouter>
