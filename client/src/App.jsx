@@ -8,6 +8,7 @@ import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import CreateListing from './pages/CreateListing';
 import UpdateListing from './pages/UpdateListing';
+import Listing from './pages/Listing';
 // https://www.youtube.com/watch?v=VAaUy_Moivw&list=PL3Fnrm_wFNB_v38hyEakflHgWOIz8kC37&index=79&t=1208s
 // https://github.com/ranjit20m/thane-housing 
 const App = () => {
@@ -23,7 +24,8 @@ const App = () => {
           <Route path='/profile' element={<Profile />} />
           <Route path='/create-listing' element={<CreateListing />} />
           <Route path='/update-listing/:listingId' element={<UpdateListing />} />
-        </Route>        
+        </Route>       
+        <Route path='/listing/:listingId' element={<Listing />} /> 
       </Routes>
     </BrowserRouter>
   )
