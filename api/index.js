@@ -60,3 +60,30 @@ app.use((err, req, res, next) => {
     })
 }) 
 
+/********************** Express Router ********************
+// index.js
+import express from 'express';
+import userRouter from './routes/user.route.js';
+const app = express();
+app.use(express.json());
+app.listen(3000, () => { console.log('Server is running on port 3000!!!')});
+app.use("/api/user", userRouter);
+
+// user.route.js
+import express from "express";
+import { test } from "../controllers/user.controller.js";
+const router = express.Router();
+router.get('/test', test);
+export default router;
+
+// user.controller.js 
+export const test = (req, res) => {
+    res.json({
+        message: 'Hello World!'
+    })
+}
+
+// http://localhost:5173/api/user/test 
+{"message":"Hello World!"}
+
+*****************************************************************************/
