@@ -53,6 +53,7 @@ export const fetchListing = async(req, res, next) => {
         next(error);
     }
 };
+
 export const searchListings = async (req, res, next) => {
     try {        
         const limit = parseInt(req.query.limit) || 9; // Limit the page for pagination        
