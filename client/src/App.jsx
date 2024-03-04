@@ -9,8 +9,8 @@ import PrivateRoute from './components/PrivateRoute';
 import CreateListing from './pages/CreateListing';
 import UpdateListing from './pages/UpdateListing';
 import Listing from './pages/Listing';
-// https://www.youtube.com/watch?v=VAaUy_Moivw&list=PL3Fnrm_wFNB_v38hyEakflHgWOIz8kC37&index=79&t=1208s
-// https://github.com/ranjit20m/thane-housing 
+import Search from './pages/Search';
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -26,9 +26,13 @@ const App = () => {
           <Route path='/update-listing/:listingId' element={<UpdateListing />} />
         </Route>       
         <Route path='/listing/:listingId' element={<Listing />} /> 
+        <Route path='/search' element={<Search />} />
       </Routes>
     </BrowserRouter>
   )
 }
 
 export default App;
+
+// https://www.youtube.com/watch?v=VAaUy_Moivw&list=PL3Fnrm_wFNB_v38hyEakflHgWOIz8kC37&index=79&t=1208s
+// https://github.com/ranjit20m/thane-housing 
